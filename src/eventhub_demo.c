@@ -24,6 +24,7 @@ int main(int argc, char** argv)
   char msgText[512];
   char deviceid[64];
   float load1, load5, load15;
+  EVENTHUBCLIENT_RESULT result;
 
   // Device ID can be passed as parameter
 
@@ -60,8 +61,9 @@ int main(int argc, char** argv)
       break;
     }
 
-    if (EventHubClient_Send(eventHubClientHandle, eventDataHandle) != EVENTHUBCLIENT_OK) {
-      printf("ERROR: EventHubClient_Send failed!\n");
+    result = EventHubClient_Send(eventHubClientHandle, eventDataHandle);
+    if (result != EVENTHUBCLIENT_OK) {
+      printf("ERROR: EventHubClient_Send failed: %d\n", result);
     } else {
       //printf("EventHubClient_Send.......Successful\n%s\n", msgText);
     }
