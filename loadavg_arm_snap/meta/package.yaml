@@ -1,0 +1,8 @@
+name: loadavgarm
+version: 1.0
+vendor: Thomas Conte <thomas@conte.com>
+icon: meta/icon.png
+services:
+ - name: loadavg
+   description: loadavg telemetry service
+   start: bin/loadavg
