@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export LD_LIBRARY_PATH=${SNAPP_APP_PATH}/lib
+
+${SNAPP_APP_PATH}/bin/eventhub_demo
