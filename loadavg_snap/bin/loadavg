@@ -1,5 +1,19 @@
 #!/bin/bash
 
-export LD_LIBRARY_PATH=${SNAPP_APP_PATH}/lib
+machine=`uname -m`
+case "$machine" in
+  x86_64)
+    triplet=x86_64-linux-gnu
+  ;;
+  armv7l)
+    triplet=arm-linux-gnueabihf
+  ;;
+  *)
+    echo "Unsupported uname -m: $machine" >&2
+    exit 1
+  ;;
+esac
 
-${SNAPP_APP_PATH}/bin/eventhub_demo
+export LD_LIBRARY_PATH=${SNAPP_APP_PATH}/lib/${triplet}
+
+${SNAPP_APP_PATH}/bin/${triplet}/eventhub_demo
