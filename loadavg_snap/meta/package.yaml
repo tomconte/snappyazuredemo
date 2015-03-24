@@ -1,5 +1,5 @@
 name: azureloadavg
-version: 1.0
+version: 1.2
 vendor: Thomas Conte <thomas@conte.com>
 icon: meta/icon.png
 services:

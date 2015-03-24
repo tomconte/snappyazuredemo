@@ -1,5 +1,23 @@
 # Snappy Azure Demo
 
+# Quick start
+
+If you want to get started quickly, download the pre-built Snappy binary from the Releases tab.
+
+https://github.com/tomconte/snappyazuredemo/releases/download/1.2/azureloadavg_1.2_all.snap
+
+Create a configuration file e.g. `conf.yaml` that contains your Service Bus connection string and Event Hub name. There is a sample `example-conf.yaml` file at the root of this repository.
+
+Install the Snap on an Ubuntu Core system:
+
+```
+sudo snappy install azureloadavg_1.0_all.snap --config conf.yaml
+```
+
+It should start right away and send load average data to your Event Hub.
+
+# Compiling the demo from source code
+
 Before you can compile the Ubuntu Core Snappy demo, you need to compile the Azure IoT C library (and its pre-requisites) for both ARM and X64. To that end, you should first prepare a cross-compiling environment that will allow you to build for both hardware architectures from a single Ubuntu VM.
 
 The article "[cross-compilation on Ubuntu using sbuild](http://hypernephelist.com/2015/03/09/cross-compilation-made-easy-on-ubuntu-with-sbuild.html)" contains the instructions on how to setup this environment and compile the Apache Qpid Proton for ARM. Please first read this article and follow the instructions!
