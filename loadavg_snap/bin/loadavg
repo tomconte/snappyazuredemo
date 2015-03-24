@@ -16,4 +16,10 @@ esac
 
 export LD_LIBRARY_PATH=${SNAPP_APP_PATH}/lib/${triplet}
 
+# Wait for config file to appear
+sleep 1
+
+# Load config into environment variables
+eval $(${SNAPP_APP_PATH}/bin/parse_conf.py)
+
 ${SNAPP_APP_PATH}/bin/${triplet}/eventhub_demo
