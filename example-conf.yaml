@@ -1,0 +1,4 @@
+config:
+    azureloadavg:
+        connectionstring: Endpoint=sb://tomhub-ns.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=aPsDxofswdVlz0bW7dQ9L2D/2tOgwMv7SULSTWmmkDo=
+        eventhubname: loadavgin
