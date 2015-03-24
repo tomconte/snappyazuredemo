@@ -15,24 +15,37 @@ See the Apache Version 2.0 License for specific language governing permissions a
 
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char** argv)
 {
-  const char* connectionString = "Endpoint=sb://tomhub-ns.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=aPsDxofswdVlz0bW7dQ9L2D/2tOgwMv7SULSTWmmkDo=";
-  const char* eventHubPath = "loadavgin";
+  const char *DEFAULT_CONNECTION_STRING = "Endpoint=sb://tomhub-ns.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=aPsDxofswdVlz0bW7dQ9L2D/2tOgwMv7SULSTWmmkDo=";
+  const char *DEFAULT_EVENTHUB_PATH = "loadavgin";
+
+  const char *connectionString;
+  const char *eventHubPath;
+
   const char* msgFormat = "{\"device\":\"%s\", \"load1\":%f, \"load5\":%f, \"load15\":%f, \"activetasks\":%d, \"totaltasks\":%d, \"pid\":%d}";
   char msgText[512];
   char deviceid[64];
   float load1, load5, load15;
   EVENTHUBCLIENT_RESULT result;
 
+  // Retrieve Event Hub configuration from environment variables
+  connectionString = getenv("CONNECTION_STRING");
+  if (!connectionString) connectionString = DEFAULT_CONNECTION_STRING;
+  eventHubPath = getenv("EVENTHUB_NAME");
+  if (!eventHubPath) eventHubPath = DEFAULT_EVENTHUB_PATH;
+  printf("connection string: %s\n", connectionString);
+  printf("event hub name: %s\n", eventHubPath);
+
   // Device ID can be passed as parameter
 
   if (argc < 2) {
-    printf("%s: using hostname for deviceid\n", argv[0]);
+    fprintf(stderr, "%s: using hostname for deviceid\n", argv[0]);
     gethostname(deviceid, sizeof(deviceid));
   } else {
-    printf("%s: using deviceid = %s\n", argv[0], argv[1]);
+    fprintf(stderr, "%s: using deviceid = %s\n", argv[0], argv[1]);
     strcpy(deviceid, argv[1]);
   }
 

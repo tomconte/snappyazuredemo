@@ -4,8 +4,6 @@ import os.path
 import sys
 import yaml
 
-print >> sys.stderr, os.environ
-
 SNAP_NAME = os.environ["SNAP_NAME"]
 SNAP_VERSION = os.environ["SNAP_VERSION"]
 CONFIG_FILE = os.path.join("/var/lib/apps", SNAP_NAME, SNAP_VERSION, "conf.yaml")
