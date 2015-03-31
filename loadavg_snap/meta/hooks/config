@@ -4,6 +4,9 @@ import os.path
 import sys
 import yaml
 
+# in alpha3, SNAP_APP_DATA_PATH contains the path to the app data directory
+# in alpha2 that variable isn't there, so workaround below works on alpha2
+
 SNAP_NAME = os.environ["SNAP_NAME"]
 SNAP_VERSION = os.environ["SNAP_VERSION"]
 CONFIG_FILE = os.path.join("/var/lib/apps", SNAP_NAME, SNAP_VERSION, "conf.yaml")
